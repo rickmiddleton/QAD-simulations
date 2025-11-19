@@ -1,9 +1,9 @@
 # QAD-simulations
 Quantum Aether Dynamics simulations
 
-Here is the full code used for the braid simulations in the Particle Paper entitled:
+Here is the full code used for the braid simulations in the QAD Particl:
 "Spontaneous Emergence of the Standard-Model Particle Spectrum
-from Classical Electrodynamics on a Discrete Lattice"
+from Classical Electrodynamics on a Discrete Lattice" <br>
 qad_braid_simulation.py
 
 
