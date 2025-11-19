@@ -7,5 +7,5 @@ from Classical Electrodynamics on a Discrete Lattice"
 qad_braid_simulation.py
 
 
-There is also a simllified version for easier compute:
+There is also a simpllified version for easier compute:
 
