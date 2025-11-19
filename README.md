@@ -7,5 +7,5 @@ Full code that produced the results in the paper: <br>
 [FULL BRAID SIMUATION](qad_braid_simulation.py)
 
 There is also a simpllified version for easier compute: <br>
-[FULL BRAID SIMUATION](qad_braid_simulation.py)
+[SIMPLIFIED BRAID SIMUATION](qad_braid_simple.py)
 
