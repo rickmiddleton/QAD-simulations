@@ -7,6 +7,7 @@ Rick Middleton & Grok 4
 Run examples:
     python qad_simulator.py --size 32 --steps 120000 --lattice both --seed 42
     python qad_simulator.py --size 28 --lattice hex --steps 150000
+    python qad_simulator.py --size 15 --steps 10000 --lattice both --seed 42
 """
 
 import numpy as np
