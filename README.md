@@ -9,5 +9,5 @@ Full code that produced the results in the paper: <br>
 There is also a simpllified version for easier compute: <br>
 [SIMPLIFIED BRAID SIMUATION](qad_braid_simple.py)
 
-For revised Paper 2 we compare a cubic lattice to a hex lattice, this is the code used in the paper for a Hex lattics: <br?
+For revised Paper 2 we compare a cubic lattice to a hex lattice, this is the code used in the paper for a Hex lattics: <br>
 [HEX BRAID SIMUATION](qad_braid_hex.py)
