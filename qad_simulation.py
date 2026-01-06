@@ -8,9 +8,16 @@ import time
 import json
 from datetime import datetime
 from scipy.spatial import KDTree
-# ==================== QAD Simulation v8.5 - wrap detection ====================
+# ==================== QAD Simulation v8.5 - wrap detection ============================
 # Wrap_steps logging for boundary crossings - V8.5 adds particle_density_scale for init
-# ==============================================================================
+# ======================================================================================
+# Create results folder if not exists
+results_dir = "qad_simulation_results"
+if not os.path.exists(results_dir):
+    os.makedirs(results_dir)
+# ======================================================================================
+# PARAMETERS
+# ======================================================================================
 code_version = 8.5
 mode = 'micro'
 macro_optimizations = True
@@ -41,6 +48,7 @@ epsilon_factor = 1.5
 fractal_exp = 0.855
 history_length = 50 # For retardation; adjust as needed for computation
 particle_density_scale = 0.000001
+# ======================================================================================
 if random_seed is not None:
     random.seed(random_seed)
     np.random.seed(random_seed)
@@ -139,7 +147,7 @@ def ampere_force(x, v, cur_node, I_nb, B, J, psi, p):
         cos_theta2 = np.dot(ds2_unit, ds2_unit)
         long_factor = 2 * cos_eps - 3 * cos_theta1 * cos_theta2
         retard_factor = 1 - np.linalg.norm(v)**2 / (2 * c_lattice**2)
-        f_mag = -mu0 * I_particle * I_particle / (4 * np.pi * r_eff) * long_factor * retard_factor * force_scale * 1 # 0.5 Scale added, use I_particle for "other"
+        f_mag = -mu0 * I_particle * I_particle / (4 * np.pi * r_eff) * long_factor * retard_factor * force_scale
         F += f_mag * (r_vec / sep)
     # Add Beltrami alignment (slice to 3D for cross)
     cur_idx = node_list.index(cur_node)
@@ -214,7 +222,7 @@ freeze_counter = 0
 last_avg_speed = 0.0
 start_time = time.time()
 timestamp = datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
-json_file = f"qad_{timestamp}_data.jsonl"
+json_file = os.path.join(results_dir, f"qad_{timestamp}_data.jsonl")
 # Manual serializable param dict
 param_dict = {
     "code_version": code_version,
@@ -256,6 +264,12 @@ traj_checkpoints = [[] for _ in range(num_particles)] # Temp for chunking trajs
 wrap_checkpoints = [[] for _ in range(num_particles)] # New: For chunking wrap_steps
 last_checkpoint_step = -1 # Track last dump step
 next_progress = progress_every - 1 # initialise loop so it runs from 0 to N-1 eg 0 to 99
+##############################################################################################################
+#  MAIN SIMUALATION LOOP
+##############################################################################################################
+print("\n" + "="*50)
+print(f"QAD SIMULATION v{code_version} | N={N} | Particles={num_particles}")
+print("="*50)
 for step in range(total_steps):
     # Evolve B and J fields (simplified MHD)
     curl_B = np.zeros((N, 4))
@@ -374,7 +388,7 @@ for pp in range(num_particles): # Loop all for multi
 ax.set_title(f"Particle Trajectories 3D | {N} Nodes | {total_steps} Steps | Seed {random_seed} | Density {particle_density_scale}")
 param_text = f"force_scale={force_scale} | quantum_blend={quantum_blend} | v_tang_scale={v_tang_scale} | Theta_base={Theta_base}\nlayers={layers} | num_particles={num_particles} | beltrami_damp_factor={beltrami_damp_factor} | viscosity_factor={viscosity_factor}\nbase_spacing={base_spacing} | t_max={t_max} | downsample_int={downsample_interval} | swirl_strength = {swirl_strength} | V{code_version}"
 ax.text2D(0.05, 0.99, param_text, transform=ax.transAxes, fontsize=10, verticalalignment='top')
-plt.savefig(f"qad_{timestamp}_orbits_3d.png")
+plt.savefig(os.path.join(results_dir, f"qad_{timestamp}_orbits_3d.png"))
 plt.close()
 # Similar for XY (plot segs)
 fig = plt.figure(figsize=(10,10))
@@ -389,7 +403,7 @@ ax.set_ylabel('Y')
 ax.set_title(f"Particle Trajectories XY | {N} Nodes | {total_steps} Steps | Seed {random_seed} | Density {particle_density_scale}")
 ax.set_aspect('equal')
 ax.text(0.05, 0.99, param_text, transform=ax.transAxes, fontsize=10, verticalalignment='top')
-plt.savefig(f"qad_{timestamp}_orbits_xy.png")
+plt.savefig(os.path.join(results_dir, f"qad_{timestamp}_orbits_xy.png"))
 plt.close()
 print(f"\nTotal runtime: {time.time() - start_time:.1f} seconds")
 print(f"\nSettings, speed, helicity and trajectories saved to {json_file}\n")
