@@ -15,9 +15,9 @@ import pandas as pd
 # 9c adds alfen speed calculation
 # 9d saves final chunk as seprate "final_chunk" file - also exports "info" file
 
-json_data = 'qad_2026-01-06_01-03-28_data.jsonl'  # Replace with your file in qad_simulation_results folder
+json_data = 'qad_2026-01-06_22-13-58_data.jsonl'  # Replace with your file in qad_simulation_results folder
 manual_plot = True
-manual_start, manual_end = 69970, 69999  # use 0, 0 for auto - which will show last 30 frames
+manual_start, manual_end = 70, 99  # use 0, 0 for auto - which will show last 30 frames
 measure_alfven_speed = True
 
 # Create results folder if not exists
