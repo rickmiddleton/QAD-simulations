@@ -30,14 +30,14 @@ I_particle = 1.0
 mu0 = 0.5 # was 1.0
 v_tang_scale = 1 # was 1500
 n_pert = 5
-t_max = 7e2
+t_max = 1e0
 dt = 0.01
 Theta_base = 1e25
 quantum_blend = 0 # was 0.05, tried 0.1
 hbar_sim = 1e-15
 num_particles = 50
 c_lattice = 3000.0
-progress_every = 1000
+progress_every = 50
 central_I = 0
 swirl_strength = 1 # was 75
 freeze_threshold = 0.000001
@@ -224,6 +224,7 @@ last_avg_speed = 0.0
 start_time = time.time()
 timestamp = datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
 json_file = os.path.join(results_dir, f"qad_{timestamp}_data.jsonl")
+json_fn = f"qad_{timestamp}_data.jsonl"
 # Manual serializable param dict
 param_dict = {
     "code_version": code_version,
@@ -407,4 +408,4 @@ ax.text(0.05, 0.99, param_text, transform=ax.transAxes, fontsize=10, verticalali
 plt.savefig(os.path.join(results_dir, f"qad_{timestamp}_orbits_xy.png"))
 plt.close()
 print(f"\nTotal runtime: {time.time() - start_time:.1f} seconds")
-print(f"\nSettings, speed, helicity and trajectories saved to {json_file}\n")
+print(f"\nSettings and trajectories saved to: {results_dir} / {json_fn}\n")
