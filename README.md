@@ -3,18 +3,20 @@ Quantum Aether Dynamics simulations
 
 Simulations created and developed starting in November 2025.
 
-## Runnting qad_simulation.py will produce: <br>
+### Runnting qad_simulation.py will produce: <br>
 - a jsonl file that contains details of the parameters used in the simulation, as well as the patcile locations, velocity and trajectories
 - a 3d plot of the complete trajectories of all particles
 - an XY plot of the trajectories of all particles
 
-## Running qad_analysis.py will produce an analysis folder containing: <br>
+### Running qad_analysis.py will produce an analysis folder containing: <br>
 - Plots and CSVs of avg speed, helicty, mean particle distace, alfven speedf, curvature and sphericity
 - Plots of the Peaks of activity, and a manual plot - last 30 frames of simulation if unselected
 
-## Runnting qad_animation.py will produce: <br>
+### Runnting qad_animation.py will produce: <br>
 - a mp4 video file with all or selected frames from the jsonl file chosen
 
+<br>
+<br>
 
 ### Code for QAD Particle paper: "Spontaneous Emergence of the Standard-Model Particle Spectrum from Classical Electrodynamics on a Discrete Lattice" <br>
 
