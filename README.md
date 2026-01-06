@@ -1,6 +1,5 @@
 # QAD-simulations
-Quantum Aether Dynamics simulations
-Simulations created and developed starting in November 2025.
+Quantum Aether Dynamics simulations - created and developed starting in November 2025.
 
 ### Running qad_simulation.py will produce: <br>
 - a jsonl file that contains details of the parameters used in the simulation, as well as the particle locations, velocity and trajectories
