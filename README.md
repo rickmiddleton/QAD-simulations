@@ -7,7 +7,7 @@ Quantum Aether Dynamics simulations - created and developed starting in November
 - an XY plot of the trajectories of all particles
 
 ### Running qad_analysis.py will produce an analysis folder containing: <br>
-- Plots and CSVs of avg speed, helicty, mean particle distace, alfven speedf, curvature and sphericity
+- Plots and CSVs of avg speed, helicty, mean particle distace, alfven speed, curvature and sphericity
 - Plots of the Peaks of activity, and a manual plot - last 30 frames of simulation if unselected
 
 ### Runnting qad_animation.py will produce: <br>
