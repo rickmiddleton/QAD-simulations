@@ -9,8 +9,17 @@ import os
 # V3 ADDS ZOOM MODES: FIXED, MANUAL, AUTO
 # V4 uses the "manual_steps" parameter for ALL modes - also fixed bug on wrap slit
 
-json_file = 'qad_2026-01-06_01-03-28_analysis/qad_2026-01-06_01-03-28_final_chunk.jsonl'  # Replace with your JSONL file path
-json_name = json_file.removesuffix('_data.jsonl')
+json_data = 'qad_2026-01-06_01-03-28_data.jsonl'  # Replace with your JSONL dat file in qad_simulation_results folder
+
+results_dir = "qad_simulation_results"
+temp_dir = "qad_temp_frames"
+if not os.path.exists(results_dir):
+    os.makedirs(results_dir)
+if not os.path.exists(temp_dir):
+    os.makedirs(temp_dir)
+
+json_name = json_data.removesuffix('_data.jsonl')
+json_fle = os.path.join(results_dir, json_data)
 
 # Mode selection: 'fixed' (full plot), 'manual' (user axes/step range), 'auto' (dynamic zoom after threshold)
 mode = 'manual'  # Change here: 'fixed', 'manual', 'auto'
@@ -195,14 +204,14 @@ for frame_idx, end in enumerate(range(start_frame, end_frame, frame_every)):
             ax.set_ylim([ymin, ymax])
             ax.set_zlim([zmin, zmax])
     ax.view_init(elev=30, azim=45)
-    frame_file = f"frame_{frame_idx:04d}.png"
+    frame_file = os.path.join(temp_dir, f"frame_{frame_idx:04d}.png")
     plt.savefig(frame_file)
     frame_files.append(frame_file)
     plt.close(fig)
 
 # Compile into MP4
 images = [imageio.imread(f) for f in frame_files]
-imageio.mimsave(f'{json_name}_animation.mp4', images, fps=10)
+imageio.mimsave(os.path.join(results_dir, f'{json_name}_animation.mp4', images, fps=10)
 
 # Clean up
 for f in frame_files:
