@@ -15,6 +15,11 @@ import pandas as pd
 # 9c adds alfen speed calculation
 # 9d saves final chunk as seprate "final_chunk" file - also exports "info" file
 
+# Create results folder if not exists
+results_dir = "qad_simulation_results"
+if not os.path.exists(results_dir):
+    os.makedirs(results_dir)
+
 measure_alfven_speed = True
 
 json_file = 'qad_2026-01-06_01-03-28_data.jsonl'  # Replace with your file
@@ -22,8 +27,9 @@ manual_plot = True
 manual_start, manual_end = 69970, 69999  # use 0, 0 for auto - which will show last 30 frames
 
 json_name = json_file.removesuffix('_data.jsonl')
-analysis_dir = f'{json_name}_analysis'
+analysis_dir = os.path.join(results_dir, f'{json_name}_analysis')
 os.makedirs(analysis_dir, exist_ok=True)
+
 
 def mean_curvature(traj):
     if len(traj) < 3:
