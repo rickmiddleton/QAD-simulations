@@ -8,6 +8,7 @@ import time
 import json
 from datetime import datetime
 from scipy.spatial import KDTree
+import os
 # ==================== QAD Simulation v8.5 - wrap detection ============================
 # Wrap_steps logging for boundary crossings - V8.5 adds particle_density_scale for init
 # ======================================================================================
